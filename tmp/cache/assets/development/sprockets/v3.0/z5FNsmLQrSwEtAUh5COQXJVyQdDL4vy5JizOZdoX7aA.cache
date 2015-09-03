@@ -1,0 +1,65 @@
+I"è(function() {
+  var CreateNewMeetupForm, DOM, createNewMeetupForm;
+
+  DOM = React.DOM;
+
+  CreateNewMeetupForm = React.createClass({
+    getInitialState: function() {
+      return {
+        title: "",
+        description: ""
+      };
+    },
+    titleChanged: function(event) {
+      return this.setState({
+        title: event.target.value
+      });
+    },
+    descriptionChanged: function(event) {
+      return this.setState({
+        description: event.target.value
+      });
+    },
+    render: function() {
+      return DOM.form({
+        className: "form-horizontal"
+      }, DOM.legend(null, "New Meetup"), DOM.div({
+        className: "form-group"
+      }, DOM.label({
+        htmlFor: "title",
+        className: "col-lg-2 control-label"
+      }, "Title"), DOM.div({
+        className: "col-lg-10"
+      }, DOM.input({
+        className: "form-control",
+        placeholder: "Meetup title",
+        id: "title",
+        type: "text",
+        value: this.state.title,
+        onChange: this.titleChanged
+      }))), DOM.div({
+        className: "form-group"
+      }, DOM.label({
+        htmlFor: "description",
+        className: "col-lg-2 control-label"
+      }, "Description"), DOM.div({
+        className: "col-lg-10"
+      }, DOM.input({
+        className: "form-control",
+        placeholder: "Meetup description",
+        id: "description",
+        type: "text",
+        value: this.state.description,
+        onChange: this.descriptionChanged
+      }))));
+    }
+  });
+
+  createNewMeetupForm = React.createFactory(CreateNewMeetupForm);
+
+  $(function() {
+    return React.render(createNewMeetupForm(), document.getElementById("CreateNewMeetup"));
+  });
+
+}).call(this);
+:ET
